@@ -1,0 +1,18 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "me.pajic.experimentalist.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "DataPackConfigMixin",
+    "FeatureFlagsMixin",
+    "ServerMainMixin",
+    "ServerPacksSourceMixin"
+  ],
+  "client": [
+    "ClientMainMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
