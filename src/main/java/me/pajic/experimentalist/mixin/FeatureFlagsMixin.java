@@ -17,11 +17,11 @@ public class FeatureFlagsMixin {
     @Shadow @Final public static FeatureFlag VANILLA;
     @Shadow @Final public static FeatureFlag TRADE_REBALANCE;
     //? if <= 1.21.1
-    /*@Shadow @Final public static FeatureFlag BUNDLE;*/
+    @Shadow @Final public static FeatureFlag BUNDLE;
     //? if > 1.21.1 {
-    @Shadow @Final public static FeatureFlag REDSTONE_EXPERIMENTS;
+    /*@Shadow @Final public static FeatureFlag REDSTONE_EXPERIMENTS;
     @Shadow @Final public static FeatureFlag MINECART_IMPROVEMENTS;
-    //?}
+    *///?}
     //? if > 1.21.1 < 1.21.4
     /*@Shadow @Final public static FeatureFlag WINTER_DROP;*/
 
@@ -39,13 +39,13 @@ public class FeatureFlagsMixin {
             ModUtil.addGlobalFeature("trade_rebalance");
         }
         //? if <= 1.21.1 {
-        /*if (ModConfig.CONFIG.bundles) {
+        if (ModConfig.CONFIG.bundles) {
             ffs = ffs.join(FeatureFlagSet.of(BUNDLE));
             ModUtil.addGlobalFeature("bundle");
         }
-        *///?}
+        //?}
         //? if > 1.21.1 {
-        if (ModConfig.CONFIG.redstoneExperiments) {
+        /*if (ModConfig.CONFIG.redstoneExperiments) {
             ffs = ffs.join(FeatureFlagSet.of(REDSTONE_EXPERIMENTS));
             ModUtil.addGlobalFeature("redstone_experiments");
         }
@@ -53,7 +53,7 @@ public class FeatureFlagsMixin {
             ffs = ffs.join(FeatureFlagSet.of(MINECART_IMPROVEMENTS));
             ModUtil.addGlobalFeature("minecart_improvements");
         }
-        //?}
+        *///?}
         //? if > 1.21.1 < 1.21.4 {
         /*if (ModConfig.CONFIG.winterDrop) {
             ffs = ffs.join(FeatureFlagSet.of(WINTER_DROP));

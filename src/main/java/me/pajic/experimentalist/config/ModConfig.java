@@ -23,11 +23,11 @@ public class ModConfig {
     public static class Config {
         public boolean tradeRebalance = false;
         //? if <= 1.21.1
-        /*public boolean bundles = false;*/
+        public boolean bundles = false;
         //? if > 1.21.1 {
-        public boolean redstoneExperiments = false;
+        /*public boolean redstoneExperiments = false;
         public boolean minecartImprovements = false;
-        //?}
+        *///?}
         //? if > 1.21.1 < 1.21.4
         /*public boolean winterDrop = false;*/
     }
