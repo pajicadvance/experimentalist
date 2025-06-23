@@ -6,6 +6,7 @@
   "mixins": [
     "DataPackConfigMixin",
     "FeatureFlagsMixin",
+    "LifecycleMixin",
     "ServerMainMixin",
     "ServerPacksSourceMixin"
   ],
