@@ -1,0 +1,1 @@
+- Reworked mod to support all versions 1.21 and above with one file.

@@ -1,29 +1,19 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "experimentalist",
   "version": "${version}",
-  "name": "modname",
-  "description": "",
-  "authors": [],
+  "name": "Experimentalist",
+  "description": "Removes the experimental settings warning screen and allows enabling experimental features globally",
+  "authors": ["pajic"],
   "contact": {},
   "license": "MIT",
   "icon": "icon.png",
   "environment": "*",
-  "entrypoints": {
-    "client": [
-      "me.pajic.modid.ClientMain"
-    ],
-    "main": [
-      "me.pajic.modid.Main"
-    ]
-  },
   "mixins": [
-    "modid.mixins.json"
+    "experimentalist.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=${loader_version}",
-    "fabric": "*",
-    "minecraft": "${minecraft_version}",
-    "fzzy_config": "*"
+    "minecraft": ">=1.21"
   }
 }
