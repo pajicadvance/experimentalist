@@ -6,13 +6,10 @@ plugins {
     id "me.modmuss50.mod-publish-plugin" version "0.8.4"
 }
 
-version = mod_version + "+" + stonecutter.current.version
+version = mod_version
 group = mod_group_id
 
 repositories {
-    maven {url = "https://maven.fzzyhmstrs.me/"}
-    maven {url = "https://thedarkcolour.github.io/KotlinForForge/"}
-    maven {url = "https://repo.nyon.dev/releases"}
 }
 
 base {
@@ -60,7 +57,6 @@ configurations {
 }
 
 dependencies {
-    implementation "me.fzzyhmstrs:fzzy_config:${property("fzzy_version")}+neoforge"
 }
 
 tasks.withType(ProcessResources).configureEach {
@@ -99,22 +95,20 @@ publishMods {
     changelog = file(getRootDir().path + "/CHANGELOG.md").text
     type = STABLE
     modLoaders.add("neoforge")
-    displayName = project.mod_version + " for NeoForge " + stonecutter.current.version
+    displayName = project.mod_version + " for NeoForge"
 
     modrinth {
         accessToken = providers.environmentVariable("MR_KEY")
-        projectId = "projectId"
+        projectId = "SKCLXAJ2"
         minecraftVersions.add(stonecutter.current.version)
-        requires("fzzy-config")
     }
 
     curseforge {
         accessToken = providers.environmentVariable("CF_KEY")
-        projectId = "projectId"
+        projectId = "1161753"
         minecraftVersions.add(stonecutter.current.version)
         javaVersions.add(JavaVersion.VERSION_21)
         clientRequired = true
         serverRequired = true
-        requires("fzzy-config")
     }
 }
