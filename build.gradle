@@ -63,7 +63,7 @@ publishMods {
     changelog = file(getRootDir().path + "/CHANGELOG.md").text
     type = STABLE
     modLoaders.add("fabric")
-    displayName = project.mod_version + " for Fabric " + stonecutter.current.version
+    displayName = project.mod_version + " for Fabric 1.21.x"
 
     modrinth {
         accessToken = providers.environmentVariable("MR_KEY")
