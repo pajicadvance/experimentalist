@@ -37,6 +37,11 @@ public class ModConfig {
                 .map(ResourceLocation::getPath)
                 .filter(path -> !path.equals("vanilla"))
                 .collect(Collectors.toSet());
+        if (FEATURES.isEmpty()) {
+            LOGGER.info("[Experimentalist] Initializing config with features.");
+            names.forEach(name -> FEATURES.put(name, false));
+            saveConfig();
+        }
         if (!names.containsAll(FEATURES.keySet())) {
             LOGGER.warn("[Experimentalist] Removing unknown features from config.");
             FEATURES.keySet().removeIf(name -> !names.contains(name));
