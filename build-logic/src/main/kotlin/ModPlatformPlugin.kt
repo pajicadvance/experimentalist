@@ -42,6 +42,7 @@ abstract class ModPlatformPlugin @Inject constructor() : Plugin<Project> {
 		val loader = extension.loader.get()
 		val isFabric = loader == "fabric"
 		val isNeoForge = loader == "neoforge"
+		val isForge = loader == "forge"
 
 		val modId = prop("mod.id")
 		val modVersion = prop("mod.version")
@@ -52,11 +53,11 @@ abstract class ModPlatformPlugin @Inject constructor() : Plugin<Project> {
 
 		listOf("java", "me.modmuss50.mod-publish-plugin", "idea").forEach { apply(plugin = it) }
 
-		version = "$modVersion$channelTag+$mcVersion-$loader"
+		version = if (mcVersion == "1.20.1") "$modVersion+1.20.x-$loader" else "$modVersion+1.21.x-$loader"
 
 		configureJarTask(modId)
 		configureIdea()
-		configureProcessResources(isFabric, isNeoForge, modId, "$modVersion$channelTag", mcVersion, extension)
+		configureProcessResources(isFabric, isNeoForge, isForge, modId, "$modVersion$channelTag", mcVersion, extension)
 		configureJava(stonecutter)
 		registerBuildAndCollectTask(extension, "$modVersion$channelTag")
 		configurePublishing(extension, loader, stonecutter, "$modVersion$channelTag", channelTag, version.toString())
@@ -71,6 +72,7 @@ abstract class ModPlatformPlugin @Inject constructor() : Plugin<Project> {
 	private fun Project.configureProcessResources(
 		isFabric: Boolean,
 		isNeoForge: Boolean,
+		isForge: Boolean,
 		modId: String,
 		modVersion: String,
 		mcVersion: String,
@@ -88,7 +90,7 @@ abstract class ModPlatformPlugin @Inject constructor() : Plugin<Project> {
 				authors = authors.replace(", ", "\", \"")
 			}
 
-			val dependencies = buildDependenciesBlock(isFabric, modId, extension.dependencies)
+			val dependencies = buildDependenciesBlock(isFabric, isForge, modId, extension.dependencies)
 
 			val props = mapOf(
 				"version" to modVersion,
@@ -110,19 +112,24 @@ abstract class ModPlatformPlugin @Inject constructor() : Plugin<Project> {
 			when {
 				isFabric -> {
 					filesMatching("fabric.mod.json") { expand(props) }
-					exclude("META-INF/neoforge.mods.toml", "META-INF/accesstransformer.cfg", ".cache")
+					exclude("META-INF/neoforge.mods.toml", "META-INF/mods.toml", "META-INF/accesstransformer.cfg", "${modId}-forge.mixins.json", "pack.mcmeta", ".cache")
 				}
 
 				isNeoForge -> {
 					filesMatching("META-INF/neoforge.mods.toml") { expand(props) }
-					exclude("fabric.mod.json", "${modId}.accesswidener", ".cache")
+					exclude("fabric.mod.json", "META-INF/mods.toml", "${modId}.accesswidener", "${modId}-forge.mixins.json", "pack.mcmeta", ".cache")
+				}
+
+				isForge -> {
+					filesMatching("META-INF/mods.toml") { expand(props) }
+					exclude("fabric.mod.json", "META-INF/neoforge.mods.toml", "${modId}.accesswidener", "${modId}.mixins.json", ".cache")
 				}
 			}
 		}
 	}
 
 	private fun buildDependenciesBlock(
-		isFabric: Boolean, modId: String, deps: DependenciesConfig
+		isFabric: Boolean, isForge: Boolean, modId: String, deps: DependenciesConfig
 	): String = if (isFabric) {
 		buildString {
 			fun joinGroup(
@@ -146,6 +153,9 @@ abstract class ModPlatformPlugin @Inject constructor() : Plugin<Project> {
 	} else {
 		buildString {
 			fun appendBlock(container: NamedDomainObjectContainer<Dependency>, type: String) {
+				val req = if (isForge) {
+					if (type == "required") "mandatory = true" else "mandatory = false"
+				} else "type = \"$type\""
 				container.forEach {
 					appendLine(
 						"""
@@ -154,7 +164,7 @@ abstract class ModPlatformPlugin @Inject constructor() : Plugin<Project> {
 						modId = "${it.modid.get()}"
 						side = "${it.environment.get().uppercase(Locale.getDefault())}"
                         versionRange = "${it.forgeVersionRange.get()}"
-                        type = "$type"
+                        $req
 						""".replace("                  ", "").trimIndent()
 					)
 				}

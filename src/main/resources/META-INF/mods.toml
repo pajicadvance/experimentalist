@@ -11,11 +11,10 @@ displayURL = "${homepage_url}"
 modUrl = "${homepage_url}"
 logoFile = "icon.png"
 authors = "${authors}"
-logoBlur = false
 credits = "${contributors}"
 
 description = '''${description}'''
 
 [[mixins]]
-config = "${id}.mixins.json"
+config="${id}-forge.mixins.json"
 ${dependencies}

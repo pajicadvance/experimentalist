@@ -4,7 +4,8 @@ stonecutter-postprocess = "2.1-beta.8"
 mod-publish = "0.8.4"
 dotenv-gradle = "4.0.0"
 fabric-loom = "1.13-SNAPSHOT"
-neoforge-moddev = "2.0.119"
+neoforge-moddev = "2.0.120"
+neoforge-moddev-legacyforge = "2.0.120"
 foojay = "1.0.0"
 fabric-loader = "0.18.1"
 
@@ -20,6 +21,7 @@ stonecutter = { id = "dev.kikugie.stonecutter", version.ref = "stonecutter" }
 dotenv = { id = "co.uzzu.dotenv.gradle", version.ref = "dotenv-gradle" }
 fabric-loom = { id = "fabric-loom", version.ref = "fabric-loom" }
 neoforged-moddev = { id = "net.neoforged.moddev", version.ref = "neoforge-moddev" }
+neoforged-moddev-legacyforge = { id = "net.neoforged.moddev.legacyforge", version.ref = "neoforge-moddev-legacyforge" }
 jsonlang-postprocess = { id = "dev.kikugie.postprocess.jsonlang", version.ref = "stonecutter-postprocess" }
 mod-publish-plugin = { id = "me.modmuss50.mod-publish-plugin", version.ref = "mod-publish" }
 
