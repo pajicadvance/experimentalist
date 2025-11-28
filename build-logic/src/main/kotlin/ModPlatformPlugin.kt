@@ -231,7 +231,7 @@ abstract class ModPlatformPlugin @Inject constructor() : Plugin<Project> {
 
 			val jarTask = tasks.named(ext.jarTask.get()).map { it as Jar }
 			val srcJarTask = tasks.named(ext.sourcesJarTask.get()).map { it as Jar }
-			val currentVersion = stonecutter.current.version
+			val currentVersion = if (stonecutter.current.version == "1.20.1") "1.20.x" else "1.21.x"
 			val deps = ext.dependencies
 
 			file.set(jarTask.flatMap(Jar::getArchiveFile))
