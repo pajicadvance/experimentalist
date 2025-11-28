@@ -1,24 +1,13 @@
-# Multicutter
+# Experimentalist
 
-This is a fork of [rotgruengelb's Stonecutter Mod Template](https://github.com/rotgruengelb/stonecutter-mod-template) altered to fit my specific needs.
+This mod removes the "Worlds using Experimental Settings are not supported" screen and allows you to enable experimental features globally. Those features will then be enabled by default on world creation and hidden from the experimental features screen. Worlds using those features will not be flagged as experimental and will not show the "Experimental" flavor text in the world selection screen.
 
-Differences from original template:
+This mod has no dependencies (not even Fabric API).
 
-- Enabled Parchment mappings.
-- Added automatic mixin registration.
-  - Mixins no longer need to be manually added to the mixin config. By default, they're added as common mixins (both server and client side). To make a mixin client side only, use the following annotation: `@MixinEnvironment(type = MixinEnvironment.Env.CLIENT)`.
-- Added versioned access wideners and access transformers.
-  - All AWs and ATs are stored in `src/main/resources/aw`. To add an AW/AT for a version, create a new file in that folder, for example `1.21.1.accesswidener` or `1.21.1.cfg`.
-- Added versioned resources.
-  - Version specific resources can be placed in `src/main/resources/resourcepacks` in the version specific folders, for example `1_21_1/rp` contains client side assets which are only going to be loaded in 1.21.1.
-  - There is a small mixin that hides these resource packs from resource pack and datapack selection UIs to prevent clutter (see `PackSelectionModelMixin`).
-  - Note that this is implemented for Fabric and NeoForge only.
-- Added dependencies:
-  - Fzzy Config as the config API
-  - Mixson for runtime JSON patching
-  - MixinConstraints for conditional mixin loading
-- Added a few more useful platform methods.
-- Added handling for pre-release versions.
-- Added handling for ResourceLocation -> Identifier rename which occured in 1.21.11.
-  - It's a bit scuffed, but it works. You may need to add additional string replacements in the buildscripts depending on your project.
-- Disabled datagen.
+## Use cases
+
+This mod can be useful for modpack authors who want to enable the experimental features available in Minecraft in their modpack in a way that requires no user interaction and is invisible to the user, or just for convenience if you like playing with experimental features.
+
+## Configuration
+
+By default, none of the experimental features are enabled globally. To make an experimental feature global, open the `experimentalist.json` config file in the mod config folder and change the value for the desired feature from `false` to `true`. This config file will be created after launching the game for the first time after installing the mod, and the changes you make will apply after restarting the game.
