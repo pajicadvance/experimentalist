@@ -19,8 +19,8 @@ import java.util.List;
 @Mixin(FeatureFlags.class)
 public class FeatureFlagsMixin {
 
-    @Shadow @Final public static FeatureFlag VANILLA;
-    @Shadow @Final public static FeatureFlagRegistry REGISTRY;
+    @Shadow @Final public static FeatureFlag /*? forge {*//*f_244571_*//*?} else {*/VANILLA/*?}*/;
+    @Shadow @Final public static FeatureFlagRegistry /*? forge {*//*f_244280_*//*?} else {*/REGISTRY/*?}*/;
 
     @ModifyExpressionValue(
             method = "<clinit>",
@@ -30,12 +30,12 @@ public class FeatureFlagsMixin {
             )
     )
     private static FeatureFlagSet enableFeaturesByDefault(FeatureFlagSet original) {
-        ModConfig.initializeConfig(REGISTRY);
-        FeatureFlagSet ffs = FeatureFlagSet.of(VANILLA);
+        ModConfig.initializeConfig(/*? forge {*//*f_244280_*//*?} else {*/REGISTRY/*?}*/);
+        FeatureFlagSet ffs = FeatureFlagSet.of(/*? forge {*//*f_244571_*//*?} else {*/VANILLA/*?}*/);
         List<ResourceLocation> names = new ArrayList<>();
         ModConfig.FEATURES.forEach((s, bl) -> {
             if (bl) names.add(Experimentalist.vanillaId(s));
         });
-        return ffs.join(REGISTRY.fromNames(names));
+        return ffs.join(/*? forge {*//*f_244280_*//*?} else {*/REGISTRY/*?}*/.fromNames(names));
     }
 }

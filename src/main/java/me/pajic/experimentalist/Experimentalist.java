@@ -18,7 +18,7 @@ import me.pajic.experimentalist.platform.fabric.FabricPlatform;
 public class Experimentalist {
 
 	public static final String MOD_ID = /*$ mod_id*/ "experimentalist";
-	public static final String MOD_VERSION = /*$ mod_version*/ "2.0.2";
+	public static final String MOD_VERSION = /*$ mod_version*/ "2.0.3";
 	public static final String MOD_FRIENDLY_NAME = /*$ mod_name*/ "Experimentalist";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 	private static final Platform PLATFORM = createPlatformInstance();
