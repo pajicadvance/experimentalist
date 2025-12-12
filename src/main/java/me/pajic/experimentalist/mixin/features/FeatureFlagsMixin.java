@@ -3,7 +3,7 @@ package me.pajic.experimentalist.mixin.features;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import me.pajic.experimentalist.Experimentalist;
 import me.pajic.experimentalist.ModConfig;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.flag.FeatureFlag;
 import net.minecraft.world.flag.FeatureFlagRegistry;
 import net.minecraft.world.flag.FeatureFlagSet;
@@ -32,7 +32,7 @@ public class FeatureFlagsMixin {
     private static FeatureFlagSet enableFeaturesByDefault(FeatureFlagSet original) {
         ModConfig.initializeConfig(/*? forge {*//*f_244280_*//*?} else {*/REGISTRY/*?}*/);
         FeatureFlagSet ffs = FeatureFlagSet.of(/*? forge {*//*f_244571_*//*?} else {*/VANILLA/*?}*/);
-        List<ResourceLocation> names = new ArrayList<>();
+        List<Identifier> names = new ArrayList<>();
         ModConfig.FEATURES.forEach((s, bl) -> {
             if (bl) names.add(Experimentalist.vanillaId(s));
         });

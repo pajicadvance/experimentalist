@@ -2,7 +2,7 @@ package me.pajic.experimentalist;
 
 import me.pajic.experimentalist.platform.Platform;
 
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,10 +37,10 @@ public class Experimentalist {
 		*///?}
 	}
 
-	public static ResourceLocation vanillaId(String path) {
+	public static Identifier vanillaId(String path) {
 		//? if 1.20.1
 		//return new ResourceLocation(path);
 		//? if > 1.20.1
-		return ResourceLocation.withDefaultNamespace(path);
+		return Identifier.withDefaultNamespace(path);
 	}
 }

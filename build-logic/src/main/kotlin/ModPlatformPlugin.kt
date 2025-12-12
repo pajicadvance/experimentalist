@@ -53,7 +53,7 @@ abstract class ModPlatformPlugin @Inject constructor() : Plugin<Project> {
 
 		listOf("java", "me.modmuss50.mod-publish-plugin", "idea").forEach { apply(plugin = it) }
 
-		version = if (mcVersion == "1.20.1") "$modVersion+1.20.x-$loader" else "$modVersion+1.21.x-$loader"
+		version = if (mcVersion == "1.20.1") "$modVersion+1.20.x-$loader" else if (mcVersion == "1.21.10") "$modVersion+1.21.x-$loader" else "$modVersion+$mcVersion-$loader"
 
 		configureJarTask(modId)
 		configureIdea()
@@ -231,7 +231,7 @@ abstract class ModPlatformPlugin @Inject constructor() : Plugin<Project> {
 
 			val jarTask = tasks.named(ext.jarTask.get()).map { it as Jar }
 			val srcJarTask = tasks.named(ext.sourcesJarTask.get()).map { it as Jar }
-			val currentVersion = if (stonecutter.current.version == "1.20.1") "1.20.x" else "1.21.x"
+			val currentVersion = if (stonecutter.current.version == "1.20.1") "1.20.x" else if (stonecutter.current.version == "1.21.10") "1.21.x" else stonecutter.current.version
 			val deps = ext.dependencies
 
 			file.set(jarTask.flatMap(Jar::getArchiveFile))

@@ -1,1 +1,1 @@
-- Fixed crash on Forge.
+- Updated to Minecraft 1.21.11.

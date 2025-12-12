@@ -10,7 +10,7 @@ platform {
 	loader = "neoforge"
 	dependencies {
 		required("minecraft") {
-			forgeVersionRange = "[1.21,)"
+			forgeVersionRange = if (stonecutter.eval(stonecutter.current.version, "1.21.10")) "[1.21,)" else "[${stonecutter.current.version},)"
 		}
 		required("neoforge") {
 			forgeVersionRange = "[1,)"

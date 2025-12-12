@@ -24,6 +24,18 @@ fletchingTable {
 	}
 }
 
+stonecutter {
+	val dir = eval(current.version, ">1.21.10")
+	replacements.string {
+		direction = dir
+		replace("ValidatedIdentifier", "ValidatedIdentifier")
+	}
+	replacements.string {
+		direction = dir
+		replace("ResourceLocation", "Identifier")
+	}
+}
+
 mixin {
 	add(sourceSets["main"], "${prop("mod.id")}-forge.refmap.json")
 	config("${prop("mod.id")}-forge.mixins.json")

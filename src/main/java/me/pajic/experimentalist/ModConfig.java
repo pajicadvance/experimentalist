@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.flag.FeatureFlagRegistry;
 
 import java.io.FileNotFoundException;
@@ -30,7 +30,7 @@ public class ModConfig {
 
     public static void initializeConfig(FeatureFlagRegistry registry) {
         Set<String> names = registry.toNames(registry.allFlags()).stream()
-                .map(ResourceLocation::getPath)
+                .map(Identifier::getPath)
                 .filter(path -> !path.equals("vanilla"))
                 .collect(Collectors.toSet());
         if (FEATURES.isEmpty()) {

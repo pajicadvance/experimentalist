@@ -10,7 +10,7 @@ platform {
 	loader = "fabric"
 	dependencies {
 		required("minecraft") {
-			versionRange = if (stonecutter.eval(stonecutter.current.version, "1.20.1")) ">=1.20" else ">=1.21"
+			versionRange = if (stonecutter.eval(stonecutter.current.version, "1.20.1")) ">=1.20" else if (stonecutter.eval(stonecutter.current.version, "1.21.10")) ">=1.21" else ">=${stonecutter.current.version}"
 		}
 		required("fabricloader") {
 			versionRange = ">=${libs.fabric.loader.get().version}"
