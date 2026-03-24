@@ -12,17 +12,11 @@ platform {
 		required("neoforge") {
 			forgeVersionRange = "[1,)"
 		}
-		required("fzzy_config") {
-			slug("fzzy-config")
-			forgeVersionRange = "[0,)"
-		}
 	}
 }
 
 neoForge {
 	version = property("deps.neoforge") as String
-	accessTransformers.from(rootProject.file("src/main/resources/aw/${stonecutter.current.version}.cfg"))
-	validateAccessTransformers = true
 
 	runs {
 		register("client") {
@@ -46,16 +40,9 @@ neoForge {
 }
 
 repositories {
-	mavenCentral()
-	strictMaven("https://maven.fzzyhmstrs.me/", "me.fzzyhmstrs") { name = "Fzzy Config" }
-	strictMaven("https://thedarkcolour.github.io/KotlinForForge/") { name = "KotlinForForge" }
-	strictMaven("https://api.modrinth.com/maven", "maven.modrinth") { name = "Modrinth" }
 }
 
 dependencies {
-	implementation(libs.moulberry.mixinconstraints)
-	jarJar(libs.moulberry.mixinconstraints)
-	implementation("me.fzzyhmstrs:fzzy_config:${prop("deps.fzzy_config")}+neoforge")
 }
 
 tasks.named("createMinecraftArtifacts") {
