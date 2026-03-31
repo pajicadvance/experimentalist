@@ -1,5 +1,3 @@
-import kotlin.text.replace
-
 plugins {
 	id("mod-platform")
 	id("net.fabricmc.fabric-loom")
@@ -9,7 +7,7 @@ platform {
 	loader = "fabric"
 	dependencies {
 		required("minecraft") {
-			versionRange = prop("deps.minecraft").replace("snapshot-", "alpha.").replace("pre-", "pre.")
+			versionRange = ">=${prop("deps.minecraft")}"
 		}
 		required("fabricloader") {
 			versionRange = ">=${libs.fabric.loader.get().version}"
